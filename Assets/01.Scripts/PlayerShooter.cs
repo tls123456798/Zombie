@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-// 주어진 Gun 오브젝트를 쏘거나 재장전
+// 주어진 Gun 오브젝트(컴포넌트)를 쏘거나 재장전
 // 알맞은 애니메이션을 재생하고 IK를 사용해 캐릭터 양손이 총에 위치하도록 조정
 public class PlayerShooter : MonoBehaviour {
     public Gun gun; // 사용할 총
@@ -29,6 +29,22 @@ public class PlayerShooter : MonoBehaviour {
 
     private void Update() {
         // 입력을 감지하고 총 발사하거나 재장전
+        if (playerInput.fire)
+        {
+            // 발사 입력 감지 시 총 발사
+            gun.Fire();
+        }
+        else if (playerInput.reload)
+        {
+            // 재장전 입력 감지 시 재장전
+            if (gun.Reload())
+            {
+                // 재장전 성공 시에만 재장전 애니메이션 재생
+                playerAnimator.SetTrigger("Reload");
+            }
+        }
+        // 남은 탄알 UI 갱신
+        UpdateUI();
     }
 
     // 탄약 UI 갱신

@@ -44,7 +44,7 @@ public class LivingEntity : MonoBehaviour, IDamageable {
     // 사망 처리
     public virtual void Die() {
         // onDeath 이벤트에 등록된 메서드가 있다면 실행
-        if (onDeath != null)
+        if (onDeath != null)  // 안전장치
         {
             onDeath();
         }

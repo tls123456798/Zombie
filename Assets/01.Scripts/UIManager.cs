@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour {
     public Text scoreText; // 점수 표시용 텍스트
     public Text waveText; // 적 웨이브 표시용 텍스트
     public GameObject gameoverUI; // 게임 오버시 활성화할 UI 
+    public Button restartButton;
 
     private void Awake()
     {
@@ -31,6 +32,11 @@ public class UIManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        restartButton.onClick.AddListener(GameRestart);
     }
 
     // 탄약 텍스트 갱신
